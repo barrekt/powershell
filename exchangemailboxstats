@@ -1,0 +1,15 @@
+<#Author       : Matt Hunt
+# Creation Date: 04/07/2022
+# Usage        : Exchange Mailbox Statistics
+#
+#********************************************************************************
+# Date                         Version      Changes
+#------------------------------------------------------------------------
+# 04/07/2022                    1.0        Intial Version
+#
+
+#*********************************************************************************
+#
+#>
+
+Get-MailboxFolderStatistics -Identity "FirstName LastName" -FolderScope RecoverableItems | Format-Table Name,FolderAndSubfolderSize,ItemsInFolderAndSubfolders -Auto
