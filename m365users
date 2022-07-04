@@ -1,0 +1,16 @@
+<#Author       : Matt Hunt
+# Creation Date: 04-07-2022
+# Usage        : Get M365 User Details Based on Filter
+#
+#********************************************************************************
+# Date                         Version      Changes
+#------------------------------------------------------------------------
+# 04-07-2022                    1.0        Intial Version
+#
+
+#*********************************************************************************
+#
+#>
+
+
+Get-Msoluser -all -EnabledFilter EnabledOnly | where {$_.title -eq "Service Desk Analyst"} | select DisplayName,UserPrincipalName,title,department,email | Export-csv C:\Temp\TravelinePTI.csv
