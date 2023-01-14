@@ -1,0 +1,23 @@
+# Connect to Azure AD
+Connect-AzureAD
+
+# Get all users from Azure AD
+$users = Get-AzureADUser -All $true
+
+# Loop through each user
+foreach ($user in $users) {
+  # Get the current UPN of the user
+  $currentUPN = $user.UserPrincipalName
+
+  # Check if the UPN is in the default onmicrosoft.com domain
+  if ($currentUPN -like "*onmicrosoft.com") {
+    # Replace the default domain with the custom domain
+    $newUPN = $currentUPN.Replace("mydomain.onmicrosoft.com", "customdomain.com")
+
+    # Update the UPN of the user in Azure AD
+    Set-AzureADUser -ObjectId $user.ObjectId -UserPrincipalName $newUPN
+
+    # Print the updated UPN
+    Write-Host "UPN for user $($user.DisplayName) has been updated to $newUPN"
+  }
+}
